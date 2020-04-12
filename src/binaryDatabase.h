@@ -3,10 +3,16 @@
 
 
 #include "dataModel.h"
+
+
 //newFile.c
 bool fileExists(char* fileName);
 void createFile(char* fileName);
 void newFile(char* fileName);
+
+//menu.c
+int mainMenu();
+int menuSelection();
 
 
 #endif

@@ -6,8 +6,10 @@
 
 
 int main(){
-    createFile("binfile.bin");
-    
+    while(menuSelection() != 6){
+        mainMenu();
+    }    
+    printf("end\n");
     system("pause");
     return 0;
 }
