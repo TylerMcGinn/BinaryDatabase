@@ -1,11 +1,12 @@
 #ifndef BINARY_DATABASE
 #define BINARY_DATABASE
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-
+#include "dataModel.h"
+//newFile.c
+bool fileExists(char* fileName);
+void createFile(char* fileName);
+void newFile(char* fileName);
 
 
 #endif
