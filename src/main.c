@@ -5,8 +5,9 @@
 #include "binaryFile.h"
 
 int main(){
-    while(menuState.selected == noSelection){
+    while(menuState.selected != exitMenu){
         mainMenu();
+        
     }    
     printf("end\n");
     system("pause");

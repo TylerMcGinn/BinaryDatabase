@@ -14,6 +14,33 @@ MenuOption menuSelection(){
     return selectedOption;
 }
 
+
+void openSubMenu(){
+    switch (menuState.selected)
+    {
+    case noSelection:
+        return;
+        break;
+    case createNewFile:
+
+        break;
+    case noSe:
+        return;
+        break;
+    case noSelection:
+        return;
+        break;
+    readFile,
+    queryFile,
+    updateFile, 
+    deleteFile,
+    exitMenu
+    default:
+        printf("invalid Selection\n");
+        break;
+    }
+}
+
 void mainMenu(){
     char* title = "MAIN MENU";
     char* new = "1: Create New File";
@@ -25,5 +52,6 @@ void mainMenu(){
     char* userPrompt = "Please Enter An Option...";
     printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n", title, new, read, query, update, delete, quit, userPrompt);
     menuSelection();
+    openSubMenu();
 }
 
