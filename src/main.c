@@ -2,11 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include "binaryDatabase.h"
-
+#include "binaryFile.h"
 
 int main(){
-    while(menuSelection() != 6){
+    while(menuState.selected == noSelection){
         mainMenu();
     }    
     printf("end\n");

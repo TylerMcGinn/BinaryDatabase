@@ -3,7 +3,6 @@
 #include <ctype.h>
 #include <string.h>
 #include <stdbool.h>
-#include "binaryDatabase.h"
 
 
 bool fileExists(char* fileName){
@@ -15,8 +14,13 @@ bool fileExists(char* fileName){
 }
 
 
+void newFile(char* fileName){
+    FILE* file = fopen(fileName, "wb");
+    fclose(file);
+}
+
+
 void createFile(char* fileName){
-    
     if(fileExists(fileName)){
         char yesNo;
         printf("%s already exists. All data will be overwritten do you wish to procceed? Y/N:", fileName);
@@ -30,8 +34,4 @@ void createFile(char* fileName){
 }
 
 
-void newFile(char* fileName){
-    FILE* file = fopen(fileName, "wb");
-    fclose(file);
-}
 
