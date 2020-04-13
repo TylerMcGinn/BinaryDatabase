@@ -4,42 +4,19 @@
 #include <stdbool.h>
 #include "sharedDataStructures.h"
 
+//clean this up later//////////////////////
+void executeMenuSelection();
+void createFileUserInput();
+////////////////////////////////////////////
 
 
-
-MenuOption menuSelection(){
+void menuSelection(){
     MenuOption selectedOption;
     scanf("%d", &selectedOption);
     menuState.selected = selectedOption;
-    return selectedOption;
+    fflush(stdin);
 }
 
-
-void openSubMenu(){
-    switch (menuState.selected)
-    {
-    case noSelection:
-        return;
-        break;
-    case createNewFile:
-
-        break;
-    case noSe:
-        return;
-        break;
-    case noSelection:
-        return;
-        break;
-    readFile,
-    queryFile,
-    updateFile, 
-    deleteFile,
-    exitMenu
-    default:
-        printf("invalid Selection\n");
-        break;
-    }
-}
 
 void mainMenu(){
     char* title = "MAIN MENU";
@@ -49,9 +26,40 @@ void mainMenu(){
     char* update = "4: New Entry";
     char* delete = "5: Delete Entry";
     char* quit = "6: Exit";
-    char* userPrompt = "Please Enter An Option...";
-    printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n", title, new, read, query, update, delete, quit, userPrompt);
+    char* userPrompt = "Please Enter An Option: ";
+    printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s", title, new, read, query, update, delete, quit, userPrompt);
     menuSelection();
-    openSubMenu();
+    executeMenuSelection();
 }
+
+
+void executeMenuSelection(){
+    switch (menuState.selected)
+    {
+    case noSelection:
+        mainMenu();
+        break;
+    case createNewFile:
+        createFileUserInput();
+        menuState.selected = noSelection;
+        break;
+    // case noSe:
+    //     return;
+    //     break;
+    // case noSelection:
+    //     return;
+    //     break;
+    // readFile,
+    // queryFile,
+    // updateFile, 
+    // deleteFile,
+    // exitMenu
+    default:
+        menuState.selected = noSelection;
+        printf("invalid Selection\n");
+        break;
+    }
+}
+
+
 

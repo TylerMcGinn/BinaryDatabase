@@ -3,19 +3,22 @@
 #include <stdbool.h>
 #include "sharedDataStructures.h"
 
-MenuState menuState = { noSelection };
+// MenuState menuState = { noSelection };
+MenuState menuState = {noSelection};
+
 
 
 //menu.c
-MenuOption menuSelection();
+void menuSelection();
+void executeMenuSelection();
 void mainMenu();
 
 
 //createFile.c
-bool fileExists(char* fileName);
-void newFile(char* fileName);
-void createFile(char* fileName);
-
+bool fileExists(char** fileName);
+void newFile(char** fileName);
+void createFile(char** fileName);
+void createFileUserInput();
 
 
 #endif
