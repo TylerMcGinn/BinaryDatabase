@@ -20,6 +20,7 @@ void menuSelection(){
 
 
 void mainMenu(){
+    CLEAR;
     char* title = "MAIN MENU";
     char* new = "1: Create New File";
     char* read = "2: Show All Entries";
@@ -41,7 +42,7 @@ void executeMenuSelection(){
         mainMenu();
         break;
     case createNewFile:
-        system("cls");
+        CLEAR;
         createFileUserInput();
         state.menuCommand = noSelection;
         break;
@@ -52,7 +53,7 @@ void executeMenuSelection(){
     //     return;
     //     break;
     case readFile:
-        system("cls");
+        CLEAR;
         readFromFile();
         state.menuCommand = noSelection;
         break;
@@ -69,9 +70,3 @@ void executeMenuSelection(){
     }
 }
 
-
-void pauseMenu(){
-    printf("Press any key to Continue...");
-    char key = fgetc(stdin);
-    system("cls");
-}

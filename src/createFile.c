@@ -5,8 +5,6 @@
 #include <stdbool.h>
 #include "sharedDataStructures.h"
 
-void pauseMenu();
-
 
 bool fileExists(char* fileName){
     FILE* file = fopen(fileName, "rb");
@@ -22,13 +20,9 @@ void newFile(char* fileName){
     if(file1 != NULL){
         fclose(file1);
         printf("created successfully: %s\n", fileName);
-        // system("pause");
     }
-    else{
+    else
         printf("An Error occured while trying to create: %s\n", fileName);
-        // system("pause");
-    }
-    // printf("%s\n",fileName);
 }
 
 
@@ -41,11 +35,11 @@ void createFile(char* fileName){
 
 void createFileUserInput(){
     char fileName[50];
-    printf("Enter filepath/filename:");
+    LIST_DIR;
+    printf("\nEnter filepath/filename:");
     scanf("%s", &fileName);
     fflush(stdin);
     createFile((char*)fileName);
-    pauseMenu();
-    // system("cls");
+    PAUSE;
 }
 

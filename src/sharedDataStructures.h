@@ -1,3 +1,18 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+
+#ifdef _WIN32
+#define PAUSE system("pause")
+#define CLEAR system("cls")
+#define LIST_DIR system("dir")
+#else
+#define PAUSE printf("Press any key to continue...");fget(stdin)
+#define CLEAR system("cls")
+#define LIST_DIR system("dir")
+#endif
+
+
 #ifndef SHAREDDATA
 #define SHAREDDATA
 
@@ -24,7 +39,6 @@ typedef enum{
 
 typedef struct{
     MenuOption menuCommand;
-    char* fileUri;
 }State;
 
 
