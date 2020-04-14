@@ -7,6 +7,7 @@
 //clean this up later//////////////////////
 void executeMenuSelection();
 void createFileUserInput();
+void readFromFile();
 ////////////////////////////////////////////
 
 
@@ -40,6 +41,7 @@ void executeMenuSelection(){
         mainMenu();
         break;
     case createNewFile:
+        system("cls");
         createFileUserInput();
         state.menuCommand = noSelection;
         break;
@@ -49,7 +51,11 @@ void executeMenuSelection(){
     // case noSelection:
     //     return;
     //     break;
-    // readFile,
+    case readFile:
+        system("cls");
+        readFromFile();
+        state.menuCommand = noSelection;
+        break;
     // queryFile,
     // updateFile, 
     // deleteFile,
@@ -64,4 +70,8 @@ void executeMenuSelection(){
 }
 
 
-
+void pauseMenu(){
+    printf("Press any key to Continue...");
+    char key = fgetc(stdin);
+    system("cls");
+}

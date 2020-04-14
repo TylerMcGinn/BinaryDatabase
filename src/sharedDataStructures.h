@@ -4,10 +4,10 @@
 
 typedef struct{
     int id;
-    char* name;
-    // char* email;
-    // char* course;
-    // int grade;
+    char name[40];
+    char email[40];
+    char course[10];
+    int grade;
 }Student;
 
 
