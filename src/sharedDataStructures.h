@@ -23,11 +23,12 @@ typedef enum{
 
 
 typedef struct{
-    MenuOption selected;
-}MenuState;
+    MenuOption menuCommand;
+    char* fileUri;
+}State;
 
 
-MenuState menuState;
+State state;
 
 
 #endif

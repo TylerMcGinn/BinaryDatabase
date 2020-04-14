@@ -13,7 +13,7 @@ void createFileUserInput();
 void menuSelection(){
     MenuOption selectedOption;
     scanf("%d", &selectedOption);
-    menuState.selected = selectedOption;
+    state.menuCommand = selectedOption;
     fflush(stdin);
 }
 
@@ -34,14 +34,14 @@ void mainMenu(){
 
 
 void executeMenuSelection(){
-    switch (menuState.selected)
+    switch (state.menuCommand)
     {
     case noSelection:
         mainMenu();
         break;
     case createNewFile:
         createFileUserInput();
-        menuState.selected = noSelection;
+        state.menuCommand = noSelection;
         break;
     // case noSe:
     //     return;
@@ -53,9 +53,11 @@ void executeMenuSelection(){
     // queryFile,
     // updateFile, 
     // deleteFile,
-    // exitMenu
+    case exitMenu:
+        state.menuCommand = exitMenu;
+        break;
     default:
-        menuState.selected = noSelection;
+        state.menuCommand = noSelection;
         printf("invalid Selection\n");
         break;
     }

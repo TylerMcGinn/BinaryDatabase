@@ -3,11 +3,11 @@
 #include <ctype.h>
 #include <string.h>
 #include <stdbool.h>
+#include "sharedDataStructures.h"
 
-
-bool fileExists(char** fileName){
-    FILE* file;
-    file = fopen(fileName, "rb");
+bool fileExists(){
+    char* uri = (char*)&state.fileUri;
+    FILE* file = fopen(uri, "rb");
     bool exists = (file != NULL) ? true : false;
     if(exists)
         fclose(file);
@@ -15,41 +15,35 @@ bool fileExists(char** fileName){
 }
 
 
-void newFile(char** fileName){
-    FILE* file1 = fopen(fileName, "wb");
+void newFile(){
+    char* uri = (char*)&state.fileUri;
+    FILE* file1 = fopen(uri, "wb");
     if(file1 != NULL){
         fclose(file1);
-        printf("created successfully: %s\n", fileName);
+        printf("created successfully: %s\n", uri);
         system("pause");
     }
     else{
-        printf("An Error occured while trying to create: %s\n", fileName);
+        printf("An Error occured while trying to create: %s\n", uri);
         system("pause");
     }
 }
 
 
-void createFile(char** fileName){
-    if(fileExists(fileName)){
-        char yesNo;
-        printf("%s already exists. All data will be overwritten do you wish to procceed? Y/N:", fileName);
-        scanf("%c", &yesNo);
-        fflush(stdin);
-        if(toupper(yesNo) == 'Y')
-            newFile(fileName);
-    }
-    else{
-        newFile(fileName);
-    }
+void createFile(){
+    char* uri = (char*)&state.fileUri;
+    if(fileExists())
+        printf("%s already exists.\n", uri);
+    else
+        newFile();
 }
 
 void createFileUserInput(){
-    char* fileUri;
-    system("cls");
+    // system("cls");
     printf("Enter filepath/filename:");
-    scanf("%s", &fileUri);
+    scanf("%s", &state.fileUri);
     fflush(stdin);
-    createFile(&fileUri);
-    system("cls");
+    createFile();
+    // system("cls");
 }
 
