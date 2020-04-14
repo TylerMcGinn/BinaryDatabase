@@ -5,9 +5,9 @@
 typedef struct{
     int id;
     char* name;
-    char* email;
-    char* course;
-    int grade;
+    // char* email;
+    // char* course;
+    // int grade;
 }Student;
 
 
