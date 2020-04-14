@@ -118,6 +118,6 @@ int main(){
     }
     // createFileUserInput();
     printf("end\n");
-    system("pause");
+    PAUSE;
     return 0;
 }
