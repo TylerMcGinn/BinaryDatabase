@@ -3,13 +3,15 @@
 #include <stdbool.h>
 #include "sharedData.h"
 
+State state = { noSelection };
 
 
 //menu.c
 void menuSelection();
 void executeMenuSelection();
 void mainMenu();
-
+void getUri();
+void getIndex();
 
 //createFile.c
 bool fileExists(char* fileName);
@@ -18,7 +20,10 @@ void createFile(char* fileName);
 void createFileUserInput();
 
 //deleteEntry.c
-void deleteEntry(int index);
+int objectLen();
+Student* copyFile(FILE* file);
+void deleteEntry();
+void overWriteFile(Student* entries);
 
 //readEntries.c
 void listEntries(FILE* file);

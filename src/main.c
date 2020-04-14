@@ -52,6 +52,9 @@ void writeToFile(Student student){
 }
 
 
+
+
+
 int main(){
     Student student1 = {
         12,
@@ -69,9 +72,16 @@ int main(){
         70
     };
 
-    while(state.menuCommand != exitMenu){
-        mainMenu();
-    }
+    // while(state.menuCommand != exitMenu){
+    //     mainMenu();
+    // }
+    writeToFile(student1);
+    writeToFile(student2);
+    writeToFile(student1);
+    writeToFile(student2);
+    // deleteEntry();
+    // readFromFile();
+    
     printf("end\n");
     PAUSE;
     return 0;

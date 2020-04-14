@@ -59,7 +59,11 @@ void executeMenuSelection(){
         break;
     // queryFile,
     // updateFile, 
-    // deleteFile,
+    case deleteFile:
+        CLEAR;
+        deleteEntry();
+        state.menuCommand = noSelection;
+        break;
     case exitMenu:
         state.menuCommand = exitMenu;
         break;
@@ -71,10 +75,15 @@ void executeMenuSelection(){
 }
 
 
-char* getUri(){
-    char uri[50];
-    printf("\nEnter filename to delete from:");
-    scanf("%s", &uri);
+void getUri(){
+    printf("\nEnter filename:");
+    scanf("%s", &fileUri);
     fflush(stdin);
-    return uri;
+}
+
+
+void getIndex(){
+    printf("\nEnter index:");
+    scanf("%s", &entryIndex);
+    fflush(stdin);
 }

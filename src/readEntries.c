@@ -24,18 +24,15 @@ void listEntries(FILE* file){
 void readFromFile(){
     char uri[50];
     LIST_DIR;
-    printf("\nEnter File to display:");
-    scanf("%s",&uri);
-    fflush(stdin);
-    FILE* file = fopen(uri, "rb");
+    getUri();
+    FILE* file = fopen(fileUri, "rb");
     if(file != NULL){
         CLEAR;
         listEntries(file);
         fclose(file); 
         PAUSE;
     }
-    else
-    {
+    else{
         printf("Error reading from: %s\n", uri);
         PAUSE;
     }

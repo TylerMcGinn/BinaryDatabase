@@ -33,6 +33,7 @@ void createFile(char* fileName){
         newFile((char*)fileName);
 }
 
+
 void createFileUserInput(){
     char fileName[50];
     LIST_DIR;
