@@ -3,7 +3,7 @@
 #include <ctype.h>
 #include <string.h>
 #include <stdbool.h>
-#include "sharedDataStructures.h"
+#include "sharedData.h"
 
 
 bool fileExists(char* fileName){

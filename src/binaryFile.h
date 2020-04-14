@@ -1,9 +1,9 @@
 #ifndef BINARYFILE
 #define BINARYFILE
 #include <stdbool.h>
-#include "sharedDataStructures.h"
+#include "sharedData.h"
 
-State state = { noSelection };
+
 
 //menu.c
 void menuSelection();
@@ -17,10 +17,10 @@ void newFile(char* fileName);
 void createFile(char* fileName);
 void createFileUserInput();
 
-//deleteFile.c
+//deleteEntry.c
+void deleteEntry(int index);
 
-
-//readFile.c
+//readEntries.c
 void listEntries(FILE* file);
 void readFromFile();
 

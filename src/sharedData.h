@@ -42,7 +42,12 @@ typedef struct{
 }State;
 
 
-State state;
+// State state;
+State state = { noSelection };
 
+void executeMenuSelection();
+void createFileUserInput();
+void readFromFile();
+char* getUri();
 
 #endif

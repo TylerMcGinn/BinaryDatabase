@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include "sharedDataStructures.h"
+#include "sharedData.h"
 
 //clean this up later//////////////////////
 void executeMenuSelection();
@@ -70,3 +70,11 @@ void executeMenuSelection(){
     }
 }
 
+
+char* getUri(){
+    char uri[50];
+    printf("\nEnter filename to delete from:");
+    scanf("%s", &uri);
+    fflush(stdin);
+    return uri;
+}

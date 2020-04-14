@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <math.h>
 #include "binaryFile.h"
-#include "sharedDataStructures.h"
+#include "sharedData.h"
 
 
 // void writeFile(){
