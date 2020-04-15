@@ -99,3 +99,42 @@ bool validateUri(){
     else    
         return false;
 }
+
+
+void query(){
+    printf("\nEnter Search Parameter: ");
+    scanf("%s", &userQuery);
+    fflush(stdin);
+}
+
+
+int entriesLen(){
+    char c;
+    FILE* file = fopen(fileUri, "rb");
+    int objectCount = 0;
+    if(file != NULL){
+        while((c = fgetc(file)) != EOF)
+        {
+            if(c == '}')
+                objectCount++;
+        }
+        fclose(file);
+    }
+    return objectCount;
+}
+
+
+Student* copyFile(){
+    Student student;
+    Student* studentEntries = (Student*)malloc(entriesLen() * sizeof(Student));
+    int index = 0;
+    FILE* file = fopen(fileUri, "rb");
+    if(file != NULL){
+        while(fscanf(file, "{%[^,],%[^,],%[^,],%[^,],%[^}]}", &student.id, &student.name, &student.email, &student.course, &student.grade) != EOF){
+            studentEntries[index] = student;
+            index++;
+        }
+        fclose(file);
+        return studentEntries;
+    }
+}

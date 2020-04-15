@@ -46,6 +46,7 @@ State state;
 
 
 char fileUri[50];
+char userQuery[50];
 int entryIndex;
 
 
@@ -55,13 +56,17 @@ void createFileUserInput();
 void readFromFile();
 bool getUri();
 void getIndex();
+void query();
 bool validateUri();
 void deleteEntry();
+int entriesLen();
+Student* copyFile();
+
 
 int studentStrLen(Student s);
 char* studentToString(Student s);
 Student parseStudent(char* student);
 
-void writeToFile(Student student);
+void newEntry(Student student);
 //////////////////////////////////
 #endif

@@ -8,6 +8,27 @@
 
 
 
+// void listQueryEntry(int targetIndex){
+//     FILE* file = fopen(fileUri, "rb");
+//     if(file != NULL){
+//         Student student;
+//         int index = 0;
+//         while(fscanf(file, "{%[^,],%[^,],%[^,],%[^,],%[^}]}", &student.id, &student.name, &student.email, &student.course, &student.grade) != EOF){
+//             if(index == targetIndex){
+//                 printf("index: %d {\n",index);
+//                 printf("  Student Id: %s\n", student.id);
+//                 printf("  Name: %s\n",student.name);
+//                 printf("  Email: %s\n",student.email);
+//                 printf("  Course: %s\n",student.course);
+//                 printf("  Grade: %s\n}\n\n",student.grade);
+//             }
+//             index++;
+//         }
+//     }
+//     fclose(file);
+// }
+
+
 
 
 
@@ -28,17 +49,16 @@ int main(){
         "70"
     };
 
-    // writeToFile(student1);
-    // writeToFile(student2);
-    // writeToFile(student1);
-    // writeToFile(student2);
+    // newEntry(student1);
+    // newEntry(student2);
+    // newEntry(student1);
+    // newEntry(student2);
     
-    while(state.menuCommand != exitMenu){
-        mainMenu();
-    }
-    // getUri();
-    // printf("%d\n",objectLen());
-    // deleteEntry();
+    // while(state.menuCommand != exitMenu){
+    //     mainMenu();
+    // }
+   
+    queryEntries();
     printf("end\n");
     PAUSE;
     return 0;

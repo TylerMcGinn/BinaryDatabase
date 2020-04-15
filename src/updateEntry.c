@@ -4,7 +4,7 @@
 #include "sharedData.h"
 
 
-void writeToFile(Student student){
+void newEntry(Student student){
     getUri();
     FILE* file = fopen(fileUri,"ab");
     if(file != NULL){

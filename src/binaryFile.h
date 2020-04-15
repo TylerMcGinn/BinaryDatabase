@@ -16,7 +16,11 @@ void executeMenuSelection();
 void mainMenu();
 bool getUri();
 void getIndex();
+void query();
 bool validateUri();
+int entriesLen();
+Student* copyFile();
+
 
 //createFile.c
 bool fileExists(char* fileName);
@@ -25,8 +29,6 @@ void createFile(char* fileName);
 void createFileUserInput();
 
 //deleteEntry.c
-int objectLen();
-Student* copyFile();
 void deleteEntry();
 void overWriteFile(Student* entries);
 
@@ -35,6 +37,9 @@ void listEntries();
 void readFromFile();
 
 //updateEntry.c
-void writeToFile(Student student);
+void newEntry(Student student);
+
+//queryEntries.c
+void queryEntries();
 
 #endif
