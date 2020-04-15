@@ -18,11 +18,11 @@
 
 
 typedef struct{
-    int id;
+    char id[10];
     char name[40];
     char email[40];
     char course[10];
-    int grade;
+    char grade[3];
 }Student;
 
 
