@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "sharedData.h"
 
 
@@ -21,8 +22,8 @@ char* studentToString(Student s){
 }
 
 
-void parseStudent(char* student){
+Student parseStudent(char* student){
     Student s;
     sscanf(student, "{%[^,],%[^,],%[^,],%[^,],%[^}]}", &s.id, &s.name, &s.email, &s.grade, &s.grade);
-    printf("%s\n",s.id);
+    return s;
 }

@@ -8,18 +8,6 @@
 
 
 
-// void writeToFile(Student student){
-//     FILE* file = fopen("t.bin","ab");
-//     if(file != NULL){
-//         fprintf(file,"{ %d,%s,%s,%s,%d }", student.id, student.name, student.email,student.course, student.grade);
-//         fclose(file);
-//         printf("success\n");
-//     }
-//     else{
-//         printf("error\n");
-//     }
-// }
-
 
 
 
@@ -40,18 +28,17 @@ int main(){
         "70"
     };
 
-    // while(state.menuCommand != exitMenu){
-    //     mainMenu();
-    // }
     // writeToFile(student1);
     // writeToFile(student2);
     // writeToFile(student1);
     // writeToFile(student2);
+    
+    while(state.menuCommand != exitMenu){
+        mainMenu();
+    }
+    // getUri();
+    // printf("%d\n",objectLen());
     // deleteEntry();
-    // readFromFile();
-    // printf("%d\n", studentObjLen(student1));
-    parseStudent(studentToString(student1));
-    // studentToString(student1);
     printf("end\n");
     PAUSE;
     return 0;

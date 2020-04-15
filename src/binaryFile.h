@@ -8,14 +8,15 @@ State state = { noSelection };
 //studentParser.c
 int studentStrLen(Student s);
 char* studentToString(Student s);
-void parseStudent(char* student);
+Student parseStudent(char* student);
 
 //menu.c
 void menuSelection();
 void executeMenuSelection();
 void mainMenu();
-void getUri();
+bool getUri();
 void getIndex();
+bool validateUri();
 
 //createFile.c
 bool fileExists(char* fileName);
@@ -25,12 +26,15 @@ void createFileUserInput();
 
 //deleteEntry.c
 int objectLen();
-Student* copyFile(FILE* file);
+Student* copyFile();
 void deleteEntry();
 void overWriteFile(Student* entries);
 
 //readEntries.c
-void listEntries(FILE* file);
+void listEntries();
 void readFromFile();
+
+//updateEntry.c
+void writeToFile(Student student);
 
 #endif

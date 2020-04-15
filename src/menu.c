@@ -75,15 +75,27 @@ void executeMenuSelection(){
 }
 
 
-void getUri(){
+bool getUri(){
     printf("\nEnter filename:");
     scanf("%s", &fileUri);
     fflush(stdin);
+    return validateUri();
 }
 
 
 void getIndex(){
     printf("\nEnter index:");
-    scanf("%s", &entryIndex);
+    scanf("%d", &entryIndex);
     fflush(stdin);
+}
+
+
+bool validateUri(){
+    FILE* file = fopen(fileUri, "rb");
+    if(file != NULL){
+        fclose(file);
+        return true;
+    }
+    else    
+        return false;
 }

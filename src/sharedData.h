@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <stdbool.h>
 
 #ifdef _WIN32
 #define PAUSE system("pause")
@@ -53,12 +53,15 @@ int entryIndex;
 void executeMenuSelection();
 void createFileUserInput();
 void readFromFile();
-void getUri();
+bool getUri();
 void getIndex();
+bool validateUri();
 void deleteEntry();
 
 int studentStrLen(Student s);
 char* studentToString(Student s);
-void parseStudent(char* student);
+Student parseStudent(char* student);
+
+void writeToFile(Student student);
 //////////////////////////////////
 #endif

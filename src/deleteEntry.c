@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "sharedData.h"
 
 
@@ -15,58 +16,54 @@ int objectLen(){
         }
         fclose(file);
     }
-    else
-        printf("Error reading file: %s\n", fileUri);
     return objectCount;
 }
 
 
-Student* copyFile(FILE* file){
+Student* copyFile(){
     Student student;
     Student* studentEntries = (Student*)malloc(objectLen() * sizeof(Student));
     int index = 0;
-    while(fscanf(file, "{ %d,%[^,],%[^,],%[^,],%d }", &student.id, &student.name, &student.email, &student.course, &student.grade) != EOF){
-        studentEntries[index] = student;
-        index++;
+    FILE* file = fopen(fileUri, "rb");
+    if(file != NULL){
+        while(fscanf(file, "{%[^,],%[^,],%[^,],%[^,],%[^}]}", &student.id, &student.name, &student.email, &student.course, &student.grade) != EOF){
+            studentEntries[index] = student;
+            index++;
+        }
+        fclose(file);
+        printf("File Copied: %s\n", fileUri);
+        return studentEntries;
     }
-    fclose(file);
-    return studentEntries;
 }
 
 
 void overWriteFile(Student* entries){
     int len = objectLen();
-    if(entryIndex > 0 && entryIndex < (len - 1)){
+    if(entryIndex >= 0 && entryIndex <= (len - 1)){
         FILE* file = fopen(fileUri, "wb");
         if(file != NULL){
             for(int i=0; i < len; i++){
-                if(i != entryIndex)
-                    fprintf(file, "{ %d,%s,%s,%s,%d }", entries[i].id, entries[i].name, entries[i].email, entries[i].course, entries[i].grade);
+                if(i != entryIndex){
+                    char* studentStr = studentToString(entries[i]);
+                    fwrite(studentStr, sizeof(char), strlen(studentStr), file);
+                }
             }
             fclose(file);
             printf("file overwritten: %s\n", fileUri);
         }
-        else{
-            printf("overwrite error\n");
-        }
     }
-    else{
+    else
         printf("deletion index out of range\n");
-    }
 }
 
 
 void deleteEntry(){
-    getUri();
-    getIndex();
-    FILE* file = fopen(fileUri, "rb");
-    if(file != NULL){
-        Student* students = copyFile(file);
+    if(getUri()){
+        getIndex();
+        Student* students = copyFile();
         overWriteFile(students); 
-        PAUSE;
     }
-    else{
-        printf("error at deleteEntry\n");
-        PAUSE;
-    }
+    else
+        printf("Invalid URI: %s\n", fileUri);
+    PAUSE;
 }
