@@ -56,5 +56,9 @@ void readFromFile();
 void getUri();
 void getIndex();
 void deleteEntry();
+
+int studentStrLen(Student s);
+char* studentToString(Student s);
+void parseStudent(char* student);
 //////////////////////////////////
 #endif

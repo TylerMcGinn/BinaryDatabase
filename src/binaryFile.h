@@ -5,6 +5,10 @@
 
 State state = { noSelection };
 
+//studentParser.c
+int studentStrLen(Student s);
+char* studentToString(Student s);
+void parseStudent(char* student);
 
 //menu.c
 void menuSelection();

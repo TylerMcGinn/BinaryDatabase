@@ -20,29 +20,7 @@
 //     }
 // }
 
-int studentStrLen(Student s){
-    int sum = 0;
-    sum += strlen(s.id);
-    sum += strlen(s.name);
-    sum += strlen(s.email);
-    sum += strlen(s.course);
-    sum += strlen(s.grade);
-    return sum;
-}
 
-
-char* studentToString(Student s){
-    char* studentStr = (char*)malloc(sizeof(char) * (studentStrLen(s) + 7));
-    sprintf(studentStr, "{%s,%s,%s,%s,%s}", s.id, s.name, s.email, s.course, s.grade);
-    return studentStr;
-}
-
-
-void parseStudentString(char* stude){
-    Student s1;
-    sscanf(stude, "{%[^,],%[^,],%[^,],%[^,],%[^}]}", &s1.id, &s1.name, &s1.email, &s1.grade, &s1.grade);
-    printf("%s\n",s1.id);
-}
 
 
 int main(){
@@ -72,7 +50,7 @@ int main(){
     // deleteEntry();
     // readFromFile();
     // printf("%d\n", studentObjLen(student1));
-    parseStudentString(studentToString(student1));
+    parseStudent(studentToString(student1));
     // studentToString(student1);
     printf("end\n");
     PAUSE;
