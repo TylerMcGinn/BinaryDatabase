@@ -2,14 +2,17 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+
 #ifdef _WIN32
 #define PAUSE system("pause")
 #define CLEAR system("cls")
 #define LIST_DIR system("dir")
+#define FLUSH fflush(stdin)
 #else
 #define PAUSE printf("Press any key to continue...");fget(stdin)
 #define CLEAR system("cls")
 #define LIST_DIR system("dir")
+#define FLUSH fflush(stdin)
 #endif
 
 
@@ -22,32 +25,31 @@ typedef struct{
     char name[40];
     char email[40];
     char course[10];
-    char grade[3];
+    char grade[4];
 }Student;
 
 
 typedef enum{
     noSelection,
     createNewFile,
-    readFile,
-    queryFile,
-    updateFile, 
-    deleteFile,
+    listAllData,
+    queryData,
+    newData,
+    updateData, 
+    deleteData,
     exitMenu
 }MenuOption;
 
 
 typedef struct{
     MenuOption menuCommand;
+    char fileUri[50];
+    char userQuery[50];
+    int entryIndex;
 }State;
 
 
 State state;
-
-
-char fileUri[50];
-char userQuery[50];
-int entryIndex;
 
 
 //clean up later///////////////////
@@ -59,14 +61,21 @@ void getIndex();
 void query();
 bool validateUri();
 void deleteEntry();
-int entriesLen();
-Student* copyFile();
+int entryCount();
+Student* copyEntries();
+void queryEntries();
+void listEntries();
 
 
 int studentStrLen(Student s);
 char* studentToString(Student s);
 Student parseStudent(char* student);
 
-void newEntry(Student student);
+
+Student getStudentData();
+void newEntry();
+void updateEntry();
 //////////////////////////////////
+
+
 #endif

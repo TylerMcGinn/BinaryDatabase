@@ -8,6 +8,7 @@
 void executeMenuSelection();
 void createFileUserInput();
 void readFromFile();
+
 ////////////////////////////////////////////
 
 
@@ -15,7 +16,7 @@ void menuSelection(){
     MenuOption selectedOption;
     scanf("%d", &selectedOption);
     state.menuCommand = selectedOption;
-    fflush(stdin);
+    FLUSH;
 }
 
 
@@ -25,11 +26,12 @@ void mainMenu(){
     char* new = "1: Create New File";
     char* read = "2: Show All Entries";
     char* query = "3: Query Entries";
-    char* update = "4: New Entry";
-    char* delete = "5: Delete Entry";
-    char* quit = "6: Exit";
+    char* newStudent = "4: New Entry";
+    char* update = "5: Update Entry";
+    char* delete = "6: Delete Entry";
+    char* quit = "7: Exit";
     char* userPrompt = "Please Enter An Option: ";
-    printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s", title, new, read, query, update, delete, quit, userPrompt);
+    printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s", title, new, read, query, newStudent,update, delete, quit, userPrompt);
     menuSelection();
     executeMenuSelection();
 }
@@ -39,6 +41,7 @@ void executeMenuSelection(){
     switch (state.menuCommand)
     {
     case noSelection:
+        CLEAR;
         mainMenu();
         break;
     case createNewFile:
@@ -46,20 +49,27 @@ void executeMenuSelection(){
         createFileUserInput();
         state.menuCommand = noSelection;
         break;
-    // case noSe:
-    //     return;
-    //     break;
-    // case noSelection:
-    //     return;
-    //     break;
-    case readFile:
+    case listAllData:
         CLEAR;
         readFromFile();
         state.menuCommand = noSelection;
         break;
-    // queryFile,
-    // updateFile, 
-    case deleteFile:
+    case queryData:
+        CLEAR;
+        queryEntries();
+        state.menuCommand = noSelection;
+        break;
+    case newData:
+        CLEAR;
+        newEntry();
+        state.menuCommand = noSelection;
+        break;
+    case updateData:
+        CLEAR;
+        updateEntry();
+        state.menuCommand = noSelection;
+        break; 
+    case deleteData:
         CLEAR;
         deleteEntry();
         state.menuCommand = noSelection;
@@ -69,29 +79,30 @@ void executeMenuSelection(){
         break;
     default:
         state.menuCommand = noSelection;
-        printf("invalid Selection\n");
+        printf("Invalid Selection\n");
         break;
     }
 }
 
 
+//shared utility functions
 bool getUri(){
-    printf("\nEnter filename:");
-    scanf("%s", &fileUri);
-    fflush(stdin);
+    printf("\nEnter Filename:");
+    scanf("%s", &state.fileUri);
+    FLUSH;
     return validateUri();
 }
 
 
 void getIndex(){
-    printf("\nEnter index:");
-    scanf("%d", &entryIndex);
-    fflush(stdin);
+    printf("\nEnter Index To Overwrite:");
+    scanf("%d", &state.entryIndex);
+    FLUSH;
 }
 
 
 bool validateUri(){
-    FILE* file = fopen(fileUri, "rb");
+    FILE* file = fopen(state.fileUri, "rb");
     if(file != NULL){
         fclose(file);
         return true;
@@ -103,14 +114,14 @@ bool validateUri(){
 
 void query(){
     printf("\nEnter Search Parameter: ");
-    scanf("%s", &userQuery);
-    fflush(stdin);
+    scanf("%s", &state.userQuery);
+    FLUSH;
 }
 
 
-int entriesLen(){
+int entryCount(){
     char c;
-    FILE* file = fopen(fileUri, "rb");
+    FILE* file = fopen(state.fileUri, "rb");
     int objectCount = 0;
     if(file != NULL){
         while((c = fgetc(file)) != EOF)
@@ -124,11 +135,11 @@ int entriesLen(){
 }
 
 
-Student* copyFile(){
-    Student student;
-    Student* studentEntries = (Student*)malloc(entriesLen() * sizeof(Student));
+Student* copyEntries(){
     int index = 0;
-    FILE* file = fopen(fileUri, "rb");
+    Student student;
+    Student* studentEntries = (Student*)malloc(entryCount() * sizeof(Student));
+    FILE* file = fopen(state.fileUri, "rb");
     if(file != NULL){
         while(fscanf(file, "{%[^,],%[^,],%[^,],%[^,],%[^}]}", &student.id, &student.name, &student.email, &student.course, &student.grade) != EOF){
             studentEntries[index] = student;
@@ -137,4 +148,49 @@ Student* copyFile(){
         fclose(file);
         return studentEntries;
     }
+}
+
+
+Student getStudentData(){
+    Student newStudent;
+    printf("Enter Student Id: ");
+    scanf("%s", newStudent.id);
+    FLUSH;
+    printf("Enter Name: ");
+    scanf("%[^\n]", newStudent.name);
+    FLUSH;
+    printf("Enter Email: ");
+    scanf("%s", newStudent.email);
+    FLUSH;
+    printf("Enter Course: ");
+    scanf("%[^\n]", newStudent.course);
+    FLUSH;
+    printf("Enter Grade: ");
+    scanf("%s", newStudent.grade);
+    FLUSH;
+    CLEAR;
+    return newStudent;
+}
+
+
+void listEntries(){
+    if(entryCount() > 0){
+        FILE* file = fopen(state.fileUri, "rb");
+        if(file != NULL){
+            Student student;
+            int index = 0;
+            while(fscanf(file, "{%[^,],%[^,],%[^,],%[^,],%[^}]}", &student.id, &student.name, &student.email, &student.course, &student.grade) != EOF){
+                printf("index: %d {\n",index);
+                printf("  Student Id: %s\n", student.id);
+                printf("  Name: %s\n",student.name);
+                printf("  Email: %s\n",student.email);
+                printf("  Course: %s\n",student.course);
+                printf("  Grade: %s\n}\n\n",student.grade);
+                index++;
+            }
+            fclose(file);
+        }
+    }
+    else 
+        printf("No Entries!\n");
 }

@@ -7,12 +7,18 @@
 
 void queryEntries(){
     bool matchFound = false;
+    LIST_DIR;
     if(getUri()){
+        CLEAR;
+        listEntries();
+        printf("QUERY ENTRIES\n");
         query();
-        Student* students = copyFile();
-        for (int i = 0; i < entriesLen(); i++){
+        CLEAR;
+        printf("MATCHES\n\n");
+        Student* students = copyEntries();
+        for (int i = 0; i < entryCount(); i++){
             char* sStr = studentToString(students[i]);
-            char* match = strstr(sStr, userQuery);
+            char* match = strstr(sStr, state.userQuery);
             if(match != NULL){
                 matchFound = true;
                 printf("index: %d {\n", i);
@@ -27,5 +33,6 @@ void queryEntries(){
             printf("No Matches Found.\n");
     }
     else 
-        printf("Invalid URI: %s\n", fileUri);
+        printf("Invalid URI: %s\n", state.fileUri);
+    PAUSE;
 }

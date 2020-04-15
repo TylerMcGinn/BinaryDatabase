@@ -37,10 +37,10 @@ void createFile(char* fileName){
 void createFileUserInput(){
     char fileName[50];
     LIST_DIR;
-    printf("\nEnter filepath/filename:");
+    printf("NEW FILE\n");
+    printf("\nEnter Filename ex:file.bin: ");
     scanf("%s", &fileName);
-    fflush(stdin);
+    FLUSH;
     createFile((char*)fileName);
     PAUSE;
 }
-

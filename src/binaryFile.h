@@ -3,12 +3,15 @@
 #include <stdbool.h>
 #include "sharedData.h"
 
-State state = { noSelection };
+
+State state = { noSelection , "", "", -1 };
+
 
 //studentParser.c
 int studentStrLen(Student s);
 char* studentToString(Student s);
 Student parseStudent(char* student);
+
 
 //menu.c
 void menuSelection();
@@ -18,8 +21,10 @@ bool getUri();
 void getIndex();
 void query();
 bool validateUri();
-int entriesLen();
-Student* copyFile();
+int entryCount();
+Student* copyEntries();
+Student getStudentData();
+void listEntries();
 
 
 //createFile.c
@@ -28,18 +33,24 @@ void newFile(char* fileName);
 void createFile(char* fileName);
 void createFileUserInput();
 
+
 //deleteEntry.c
 void deleteEntry();
-void overWriteFile(Student* entries);
+void overwriteFile_Delete(Student* entries);
+
 
 //readEntries.c
-void listEntries();
 void readFromFile();
 
+
 //updateEntry.c
-void newEntry(Student student);
+void overwriteFile_Update(Student* entries, Student updatedStudent);
+void updateEntry();
+void newEntry();
+
 
 //queryEntries.c
 void queryEntries();
+
 
 #endif
